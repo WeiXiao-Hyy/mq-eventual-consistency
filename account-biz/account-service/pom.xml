@@ -12,11 +12,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>account-service</name>
     <description>account-service</description>
-    <packaging>pom</packaging>
-
-    <properties>
-        <java.version>21</java.version>
-    </properties>
+    <packaging>jar</packaging>
 
     <dependencies>
         <!--Spring Boot-->
@@ -58,7 +54,6 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -67,7 +62,26 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
         </plugins>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+            </resource>
+            <resource>
+                <directory>src/main/resources</directory>
+            </resource>
+        </resources>
     </build>
 
 </project>
