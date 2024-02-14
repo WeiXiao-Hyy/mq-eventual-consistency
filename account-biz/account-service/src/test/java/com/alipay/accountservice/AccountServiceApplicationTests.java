@@ -1,13 +1,11 @@
 package com.alipay.accountservice;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.junit.Test;
 
-@SpringBootTest
-class AccountServiceApplicationTests {
+public class AccountServiceApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
 }

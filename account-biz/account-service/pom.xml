@@ -54,6 +54,18 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
+
+        <dependency>
+            <groupId>com.alipay</groupId>
+            <artifactId>cloud-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+       
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
     <build>
@@ -68,6 +80,40 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            <!-- 逆向工程插件 -->
+            <!--mybatis 逆向工程插件-->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.3.7</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>mysql</groupId>
+                        <artifactId>mysql-connector-java</artifactId>
+                        <version>5.1.47</version>
+                        <scope>runtime</scope>
+                    </dependency>
+                </dependencies>
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <phase>deploy</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <!--允许移动生成的文件 -->
+                    <verbose>true</verbose>
+                    <!-- 是否覆盖 -->
+                    <overwrite>true</overwrite>
+                    <!-- 自动生成的配置 -->
+                    <configurationFile>
+                        src/main/resources/generatorConfig.xml
+                    </configurationFile>
                 </configuration>
             </plugin>
         </plugins>

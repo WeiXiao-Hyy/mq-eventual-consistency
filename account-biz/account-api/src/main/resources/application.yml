@@ -1,1 +1,20 @@
-
+server:
+  port: 8010
+spring:
+  application:
+    name: account-api
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: 123456
+    url: jdbc:mysql://localhost:3307/springcloud?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    
+mybatis-plus:
+  mapper-locations: classpath:mapper/*Mapper.xml
+  global-config:
+    db-config:
+      id-type: auto

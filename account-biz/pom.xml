@@ -15,6 +15,10 @@
     <description>account-biz</description>
     <packaging>pom</packaging>
 
+    <dependencies>
+
+    </dependencies>
+
     <modules>
         <module>account-api</module>
         <module>account-service</module>
