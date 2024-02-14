@@ -29,4 +29,11 @@ public class AccountController {
         log.info("insert account: {}", accountDTO);
         return accountService.insertAccount(accountDTO);
     }
+
+    @PostMapping("/update")
+    @ResponseResult
+    public String update(@RequestBody AccountDTO accountDTO) {
+        log.info("update account: {}", accountDTO);
+        return accountService.updateAccount(accountDTO);
+    }
 }

@@ -31,8 +31,14 @@ public class AccountServiceImpl implements AccountService {
         int ans = accountMapper.insertSelective(account);
         if (ans <= 0) {
             log.error("insert account failed");
-            throw new BizException("账户插入失败");
+            throw new BizException("新增账户失败");
         }
         return "insert success";
     }
+
+    @Override
+    public String updateAccount(AccountDTO accountDTO) {
+        return null;
+    }
+
 }
