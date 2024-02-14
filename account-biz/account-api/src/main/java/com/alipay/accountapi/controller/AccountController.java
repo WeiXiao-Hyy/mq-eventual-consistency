@@ -1,5 +1,6 @@
 package com.alipay.accountapi.controller;
 
+import com.alipay.accountapi.annotation.ResponseResult;
 import com.alipay.accountservice.dto.AccountDTO;
 import com.alipay.accountservice.service.AccountService;
 import lombok.extern.slf4j.Slf4j;
@@ -23,6 +24,7 @@ public class AccountController {
     private AccountService accountService;
 
     @PostMapping("/insert")
+    @ResponseResult
     public String insert(@RequestBody AccountDTO accountDTO) {
         log.info("insert account: {}", accountDTO);
         return accountService.insertAccount(accountDTO);

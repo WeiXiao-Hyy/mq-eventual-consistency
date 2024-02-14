@@ -1,13 +1,12 @@
 package com.alipay.productapi;
 
-import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
-class ProductApiApplicationTests {
+import org.junit.Test;
+
+public class ProductApiApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
 }

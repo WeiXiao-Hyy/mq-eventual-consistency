@@ -1,10 +1,6 @@
 package com.alipay.accountservice.service;
 
-import com.alipay.accountservice.domain.Account;
 import com.alipay.accountservice.dto.AccountDTO;
-import com.alipay.accountservice.mapper.AccountMapper;
-import javax.annotation.Resource;
-import org.springframework.stereotype.Service;
 
 /**
  * @author hyy
