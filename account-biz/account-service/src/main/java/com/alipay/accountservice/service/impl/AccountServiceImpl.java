@@ -1,6 +1,8 @@
 package com.alipay.accountservice.service.impl;
 
+import com.alipay.accountservice.assemble.AccountAssemble;
 import com.alipay.accountservice.domain.Account;
+import com.alipay.accountservice.domain.AccountExample;
 import com.alipay.accountservice.dto.AccountDTO;
 import com.alipay.accountservice.mapper.AccountMapper;
 import com.alipay.accountservice.service.AccountService;
@@ -31,14 +33,54 @@ public class AccountServiceImpl implements AccountService {
         int ans = accountMapper.insertSelective(account);
         if (ans <= 0) {
             log.error("insert account failed");
-            throw new BizException("新增账户失败");
+            throw new BizException("insert account failed");
         }
-        return "insert success";
+        return "insert account success";
     }
 
     @Override
     public String updateAccount(AccountDTO accountDTO) {
-        return null;
+        Account account = Account.builder()
+                .accountCode(accountDTO.getAccountCode())
+                .accountName(accountDTO.getAccountName())
+                .amount(accountDTO.getAmount())
+                .build();
+
+        int ans = accountMapper.updateByPrimaryKeySelective(account);
+        if (ans <= 0) {
+            log.error("update account failed");
+            throw new BizException("update account failed");
+        }
+        return "update account success";
     }
+
+    @Override
+    public String deleteAccount(String accountCode) {
+        AccountExample example = new AccountExample();
+        AccountExample.Criteria criteria = example.createCriteria();
+
+        criteria.andAccountCodeEqualTo(accountCode);
+
+        int ans = accountMapper.deleteByExample(example);
+
+        if (ans <= 0) {
+            log.error("delete account failed");
+            throw new BizException("delete account failed");
+        }
+        return "delete account success";
+    }
+
+    @Override
+    public AccountDTO selectByCode(String accountCode) {
+        AccountExample example = new AccountExample();
+        AccountExample.Criteria criteria = example.createCriteria();
+
+        criteria.andAccountCodeEqualTo(accountCode);
+
+        Account account = (Account) accountMapper.selectByExample(example);
+
+        return AccountAssemble.assemble(account);
+    }
+
 
 }

@@ -24,4 +24,22 @@ public interface AccountService {
      * @return
      */
     String updateAccount(AccountDTO accountDTO);
+
+
+    /**
+     * 删除账号
+     *
+     * @param accountCode
+     * @return
+     */
+    String deleteAccount(String accountCode);
+
+
+    /**
+     * 根据account获取账号
+     *
+     * @param accountCode
+     * @return
+     */
+    AccountDTO selectByCode(String accountCode);
 }
