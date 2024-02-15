@@ -1,4 +1,4 @@
-package com.alipay.accountapi.advice;
+package com.alipay.cloudcommon.advice;
 
 import com.alipay.cloudcommon.err.BizException;
 import com.alipay.cloudcommon.err.ExceptionEnum;

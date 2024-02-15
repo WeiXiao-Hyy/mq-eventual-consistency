@@ -1,16 +1,22 @@
 package com.alipay.accountservice.dto;
 
 import java.math.BigDecimal;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * @author hyy
  * @Description
  * @create 2024-02-14 09:22
  */
-@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 public class AccountDTO {
     /**
      * 用户编码

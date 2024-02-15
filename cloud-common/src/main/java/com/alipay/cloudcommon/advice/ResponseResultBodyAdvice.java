@@ -1,6 +1,6 @@
-package com.alipay.accountapi.advice;
+package com.alipay.cloudcommon.advice;
 
-import com.alipay.accountapi.annotation.ResponseResult;
+import com.alipay.cloudcommon.anno.ResponseResult;
 import com.alipay.cloudcommon.res.ResultResponse;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.lang.annotation.Annotation;

@@ -15,6 +15,14 @@
     <description>account-biz</description>
     <packaging>pom</packaging>
 
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
     <modules>
         <module>account-api</module>
         <module>account-service</module>

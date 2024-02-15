@@ -6,12 +6,17 @@ package com.alipay.cloudcommon.err;
  * @create 2024-02-14 14:11
  */
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @description: 自定义异常类
  * @author: DT
  * @date: 2021/4/19 21:44
  * @version: v1.0
  */
+@Setter
+@Getter
 public class BizException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
@@ -20,6 +25,7 @@ public class BizException extends RuntimeException {
      * 错误码
      */
     protected String errorCode;
+
     /**
      * 错误信息
      */
@@ -58,22 +64,6 @@ public class BizException extends RuntimeException {
         this.errorMsg = errorMsg;
     }
 
-
-    public String getErrorCode() {
-        return errorCode;
-    }
-
-    public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
-    }
-
-    public String getErrorMsg() {
-        return errorMsg;
-    }
-
-    public void setErrorMsg(String errorMsg) {
-        this.errorMsg = errorMsg;
-    }
 
     @Override
     public Throwable fillInStackTrace() {

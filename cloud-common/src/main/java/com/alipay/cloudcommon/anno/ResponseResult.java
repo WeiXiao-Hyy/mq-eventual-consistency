@@ -1,4 +1,4 @@
-package com.alipay.accountapi.annotation;
+package com.alipay.cloudcommon.anno;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
