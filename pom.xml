@@ -19,6 +19,9 @@
         <mysql.version>5.1.47</mysql.version>
         <lombok.version>1.18.30</lombok.version>
         <fastjson.version>2.0.45</fastjson.version>
+        <cloud-common.version>0.0.1-SNAPSHOT</cloud-common.version>
+        <account-service.version>0.0.1-SNAPSHOT</account-service.version>
+        <order-service.version>0.0.1-SNAPSHOT</order-service.version>
         <encoding>UTF-8</encoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -63,6 +66,14 @@
             </dependency>
 
             <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>Greenwich.SR2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <dependency>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
                 <version>${lombok.version}</version>
@@ -72,6 +83,25 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alipay</groupId>
+                <artifactId>cloud-common</artifactId>
+                <version>${cloud-common.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alipay</groupId>
+                <artifactId>account-service</artifactId>
+                <version>${account-service.version}</version>
+            </dependency>
+
+
+            <dependency>
+                <groupId>com.alipay</groupId>
+                <artifactId>order-service</artifactId>
+                <version>${order-service.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

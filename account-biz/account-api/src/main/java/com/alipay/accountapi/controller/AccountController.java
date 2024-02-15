@@ -27,7 +27,7 @@ public class AccountController {
     @Autowired
     private AccountService accountService;
 
-    @PostMapping("/insert")
+    @PostMapping("/create")
     @ResponseResult
     public String insert(@RequestBody AccountDTO accountDTO) {
         log.info("insert account: {}", accountDTO);
