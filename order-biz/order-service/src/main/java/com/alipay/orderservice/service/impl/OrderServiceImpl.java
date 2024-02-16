@@ -7,9 +7,12 @@ import com.alipay.orderservice.domain.OrderExample;
 import com.alipay.orderservice.dto.OrderDTO;
 import com.alipay.orderservice.mapper.OrderMapper;
 import com.alipay.orderservice.service.OrderService;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 /**
  * @author hyy
@@ -87,8 +90,12 @@ public class OrderServiceImpl implements OrderService {
 
         criteria.andOrderNoEqualTo(orderNo);
 
-        Order order = (Order) orderMapper.selectByExample(example);
+        List<Order> orderList = orderMapper.selectByExample(example);
 
-        return OrderAssemble.assemble(order);
+        if (CollectionUtils.isEmpty(orderList)) {
+            return null;
+        }
+
+        return orderList.stream().map(OrderAssemble::assemble).collect(Collectors.toList()).get(0);
     }
 }
