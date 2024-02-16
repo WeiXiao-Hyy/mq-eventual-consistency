@@ -1,8 +1,8 @@
 server:
-  port: 8014
+  port: 8015
 spring:
   application:
-    name: order-service
+    name: account-feign
   cloud:
     nacos:
       discovery:
@@ -12,12 +12,6 @@ spring:
     username: root
     password: 123456
     url: jdbc:mysql://localhost:3307/springcloud?useUnicode=true&characterEncoding=utf-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
-
-mybatis-plus:
-  mapper-locations: classpath:mapper/*Mapper.xml
-  global-config:
-    db-config:
-      id-type: auto
 
 logging:
   config: classpath:log4j2.xml

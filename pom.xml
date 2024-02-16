@@ -21,6 +21,8 @@
         <fastjson.version>2.0.45</fastjson.version>
         <cloud-common.version>0.0.1-SNAPSHOT</cloud-common.version>
         <account-service.version>0.0.1-SNAPSHOT</account-service.version>
+        <account-feign.version>0.0.1-SNAPSHOT</account-feign.version>
+        <account-api.version>0.0.1-SNAPSHOT</account-api.version>
         <order-service.version>0.0.1-SNAPSHOT</order-service.version>
         <encoding>UTF-8</encoding>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -97,12 +99,24 @@
                 <version>${account-service.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.alipay</groupId>
+                <artifactId>account-feign</artifactId>
+                <version>${account-feign.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.alipay</groupId>
+                <artifactId>account-api</artifactId>
+                <version>${account-api.version}</version>
+            </dependency>
 
             <dependency>
                 <groupId>com.alipay</groupId>
                 <artifactId>order-service</artifactId>
                 <version>${order-service.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

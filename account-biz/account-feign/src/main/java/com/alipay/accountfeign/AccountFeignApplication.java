@@ -2,10 +2,10 @@ package com.alipay.accountfeign;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.cloud.openfeign.EnableFeignClients;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 @SpringBootApplication
-@EnableFeignClients(basePackages = "com.alipay.accountfeign.feign")
+@EnableDiscoveryClient
 public class AccountFeignApplication {
 
     public static void main(String[] args) {

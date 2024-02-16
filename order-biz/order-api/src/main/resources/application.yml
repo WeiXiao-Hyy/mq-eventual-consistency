@@ -1,8 +1,8 @@
 server:
-  port: 8014
+  port: 8013
 spring:
   application:
-    name: order-service
+    name: order-api
   cloud:
     nacos:
       discovery:

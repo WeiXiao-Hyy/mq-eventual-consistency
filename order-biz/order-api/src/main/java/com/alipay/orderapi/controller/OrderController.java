@@ -1,6 +1,9 @@
 package com.alipay.orderapi.controller;
 
+import com.alipay.accountfeign.feign.AccountFeign;
+import com.alipay.accountservice.dto.AccountDTO;
 import com.alipay.cloudcommon.anno.ResponseResult;
+import com.alipay.cloudcommon.res.ResultResponse;
 import com.alipay.orderservice.dto.OrderDTO;
 import com.alipay.orderservice.service.OrderService;
 import javax.annotation.Resource;
@@ -27,6 +30,8 @@ public class OrderController {
     @Resource
     private OrderService orderService;
 
+    @Resource
+    private AccountFeign accountFeign;
 
     @PostMapping("/create")
     @ResponseResult
@@ -50,8 +55,16 @@ public class OrderController {
     }
 
     @GetMapping("/getByOrderNo/{orderNo}")
+    @ResponseResult
     public OrderDTO getByOrderNo(@PathVariable(value = "orderNo") String orderNo) {
         log.info("get order by orderNo: {}", orderNo);
         return orderService.selectByOrderNo(orderNo);
+    }
+
+    @GetMapping("/getByAccountCode/{accountCode}")
+    @ResponseResult
+    public ResultResponse<AccountDTO> selectByAccountCode(@PathVariable(value = "accountCode") String accountCode) {
+        log.info("select account by accountCode: {}", accountCode);
+        return accountFeign.selectByCode(accountCode);
     }
 }

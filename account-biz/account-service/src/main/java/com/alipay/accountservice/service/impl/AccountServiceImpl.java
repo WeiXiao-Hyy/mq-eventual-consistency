@@ -7,9 +7,12 @@ import com.alipay.accountservice.dto.AccountDTO;
 import com.alipay.accountservice.mapper.AccountMapper;
 import com.alipay.accountservice.service.AccountService;
 import com.alipay.cloudcommon.err.BizException;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 /**
  * @author hyy
@@ -24,11 +27,7 @@ public class AccountServiceImpl implements AccountService {
     private AccountMapper accountMapper;
 
     public String insertAccount(AccountDTO accountDTO) {
-        Account account = Account.builder()
-                .accountName(accountDTO.getAccountName())
-                .accountCode(accountDTO.getAccountCode())
-                .amount(accountDTO.getAmount())
-                .build();
+        Account account = Account.builder().accountName(accountDTO.getAccountName()).accountCode(accountDTO.getAccountCode()).amount(accountDTO.getAmount()).build();
 
         int ans = accountMapper.insertSelective(account);
         if (ans <= 0) {
@@ -40,11 +39,7 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public String updateAccount(AccountDTO accountDTO) {
-        Account account = Account.builder()
-                .accountCode(accountDTO.getAccountCode())
-                .accountName(accountDTO.getAccountName())
-                .amount(accountDTO.getAmount())
-                .build();
+        Account account = Account.builder().accountCode(accountDTO.getAccountCode()).accountName(accountDTO.getAccountName()).amount(accountDTO.getAmount()).build();
 
         int ans = accountMapper.updateByPrimaryKeySelective(account);
         if (ans <= 0) {
@@ -77,9 +72,13 @@ public class AccountServiceImpl implements AccountService {
 
         criteria.andAccountCodeEqualTo(accountCode);
 
-        Account account = (Account) accountMapper.selectByExample(example);
+        List<Account> accountList = accountMapper.selectByExample(example);
 
-        return AccountAssemble.assemble(account);
+        if (CollectionUtils.isEmpty(accountList)) {
+            return null;
+        }
+
+        return accountList.stream().map(AccountAssemble::assemble).collect(Collectors.toList()).get(0);
     }
 
 

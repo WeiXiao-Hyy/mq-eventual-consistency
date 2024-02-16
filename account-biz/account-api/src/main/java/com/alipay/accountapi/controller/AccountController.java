@@ -52,6 +52,8 @@ public class AccountController {
     @ResponseResult
     public AccountDTO getByCode(@PathVariable(value = "accountCode") String accountCode) {
         log.info("get account by code: {}", accountCode);
-        return accountService.selectByCode(accountCode);
+        AccountDTO accountDTO = accountService.selectByCode(accountCode);
+        log.debug("get account dto: {}", accountDTO.toString());
+        return accountDTO;
     }
 }
