@@ -74,38 +74,4 @@ public class PayRecordServiceImpl implements PayRecordService {
         payRecordDTO.setOrderNo(snowflake.nextIdStr());
         transactionProducer.send(JSON.toJSONString(payRecordDTO), "order");
     }
-
-    @Override
-    public String updatePayRecord(PayRecordDTO payRecordDTO) {
-        PayRecord payRecord = PayRecord.builder().accountCode(payRecordDTO.getAccountCode()).productCode(payRecordDTO.getProductCode()).orderNo(payRecordDTO.getOrderNo()).count(payRecordDTO.getCount()).amount(payRecordDTO.getAmount()).build();
-
-        int ans = payRecordMapper.updateByPrimaryKeySelective(payRecord);
-
-        if (ans <= 0) {
-            log.error("update order failed");
-            throw new BizException("update order failed");
-        }
-
-        return "update order failed";
-    }
-
-    @Override
-    public void deletePayRecord(String orderNo) {
-    }
-
-    @Override
-    public PayRecordDTO selectByOrderNo(String orderNo) {
-        PayRecordExample example = new PayRecordExample();
-        PayRecordExample.Criteria criteria = example.createCriteria();
-
-        criteria.andOrderNoEqualTo(orderNo);
-
-        List<PayRecord> payRecordList = payRecordMapper.selectByExample(example);
-
-        if (CollectionUtils.isEmpty(payRecordList)) {
-            return null;
-        }
-
-        return payRecordList.stream().map(PayRecordAssemble::assemble).collect(Collectors.toList()).get(0);
-    }
 }

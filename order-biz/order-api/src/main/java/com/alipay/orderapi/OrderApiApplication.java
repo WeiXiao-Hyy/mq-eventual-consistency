@@ -8,7 +8,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableDiscoveryClient
 @EnableFeignClients(basePackages = {"com.alipay.accountfeign.feign"})
-@MapperScan("com.alipay.*.mapper")
+@MapperScan(value = "com.alipay.*.mapper")
 @SpringBootApplication(scanBasePackages = "com.alipay")
 public class OrderApiApplication {
 

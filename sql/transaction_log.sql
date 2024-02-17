@@ -15,17 +15,20 @@
 */
 
 SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
+SET
+FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for transaction_log
 -- ----------------------------
 DROP TABLE IF EXISTS `transaction_log`;
-CREATE TABLE `transaction_log` (
-  `id` varchar(32) NOT NULL,
-  `business` varchar(32) DEFAULT NULL,
-  `foreign_key` varchar(32) DEFAULT NULL,
-  PRIMARY KEY (`id`)
+CREATE TABLE `transaction_log`
+(
+    `id`          varchar(32) NOT NULL,
+    `business`    varchar(32) DEFAULT NULL,
+    `foreign_key` varchar(32) DEFAULT NULL,
+    PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-SET FOREIGN_KEY_CHECKS = 1;
+SET
+FOREIGN_KEY_CHECKS = 1;

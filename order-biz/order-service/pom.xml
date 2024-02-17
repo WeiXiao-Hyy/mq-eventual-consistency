@@ -76,7 +76,7 @@
 
         <dependency>
             <groupId>com.alipay</groupId>
-            <artifactId>account-service</artifactId>
+            <artifactId>account-feign</artifactId>
         </dependency>
 
         <dependency>

@@ -46,6 +46,7 @@
         <table tableName="pay_record" domainObjectName="PayRecord">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
+        <table tableName="transaction_log" domainObjectName="TransactionLog"/>
 
     </context>
 </generatorConfiguration>

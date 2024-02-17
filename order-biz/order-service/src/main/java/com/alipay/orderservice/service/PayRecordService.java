@@ -27,31 +27,4 @@ public interface PayRecordService {
      * @param payRecordDTO
      */
     void createPayRecord(PayRecordDTO payRecordDTO) throws MQClientException;
-
-
-    /**
-     * 更新订单
-     *
-     * @param payRecordDTO
-     * @return
-     */
-    String updatePayRecord(PayRecordDTO payRecordDTO);
-
-
-    /**
-     * 删除订单
-     *
-     * @param orderNo
-     * @return
-     */
-    void deletePayRecord(String orderNo);
-
-
-    /**
-     * 根据订单No查找
-     *
-     * @param orderNo
-     * @return
-     */
-    PayRecordDTO selectByOrderNo(String orderNo);
 }

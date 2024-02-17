@@ -52,6 +52,7 @@ public class TransactionProducer {
     // 事务消息发送
     public TransactionSendResult send(String data, String topic) throws MQClientException {
         Message message = new Message(topic, data.getBytes());
+        message.setKeys("pay_record");
         return this.producer.sendMessageInTransaction(message, null);
     }
 }

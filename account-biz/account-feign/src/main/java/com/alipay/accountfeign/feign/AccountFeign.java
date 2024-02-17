@@ -1,10 +1,10 @@
 package com.alipay.accountfeign.feign;
 
-import com.alipay.cloudcommon.dto.AccountDTO;
+import com.alipay.cloudcommon.dto.PayRecordDTO;
 import com.alipay.cloudcommon.res.ResultResponse;
 import org.springframework.cloud.openfeign.FeignClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 /**
  * @author hyy
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(value = "account-api", path = "/account")
 public interface AccountFeign {
 
-    @GetMapping("/getByCode/{accountCode}")
-    ResultResponse<AccountDTO> selectByCode(@PathVariable(value = "accountCode") String accountCode);
-
-
+    @PostMapping("/amount/increase")
+    ResultResponse<Void> increaseAmount(@RequestBody PayRecordDTO payRecordDTO);
 }

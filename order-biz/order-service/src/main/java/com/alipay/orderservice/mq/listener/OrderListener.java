@@ -1,15 +1,15 @@
 package com.alipay.orderservice.mq.listener;
 
 import com.alibaba.fastjson.JSONObject;
-import com.alipay.accountservice.service.AccountService;
+import com.alipay.accountfeign.feign.AccountFeign;
 import com.alipay.cloudcommon.dto.PayRecordDTO;
 import java.util.List;
-import javax.annotation.Resource;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyContext;
 import org.apache.rocketmq.client.consumer.listener.ConsumeConcurrentlyStatus;
 import org.apache.rocketmq.client.consumer.listener.MessageListenerConcurrently;
 import org.apache.rocketmq.common.message.MessageExt;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,12 +21,12 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class OrderListener implements MessageListenerConcurrently {
 
-    @Resource
-    private AccountService accountService;
+    @Autowired
+    private AccountFeign accountFeign;
 
     @Override
     public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
-        log.info("消费着线程监听到消息");
+        log.info("消费者线程监听到消息");
         for (MessageExt message : msgs) {
             if (!process(message)) {
                 return ConsumeConcurrentlyStatus.RECONSUME_LATER;
@@ -38,10 +38,9 @@ public class OrderListener implements MessageListenerConcurrently {
 
     private boolean process(MessageExt message) {
         try {
-            log.info("开始处理订单数据，准备增加余额");
             PayRecordDTO payRecordDTO = JSONObject.parseObject(message.getBody(), PayRecordDTO.class);
-            accountService.increaseAmount(payRecordDTO);
-//            int k = 1 / 0;
+            log.info("开始处理订单数据,准备增加余额,MQ消费者获得消息为:{}", payRecordDTO);
+            accountFeign.increaseAmount(payRecordDTO);
             return true;
         } catch (Exception e) {
             if (message.getReconsumeTimes() >= 3) {

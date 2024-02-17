@@ -119,7 +119,7 @@
         select
         <include refid="Base_Column_List"/>
         from account
-        where ACCOUNT_CODE = #{account_code,jdbcType=VARCHAR}
+        where ACCOUNT_CODE = #{accountCode,jdbcType=VARCHAR}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
         <!--
