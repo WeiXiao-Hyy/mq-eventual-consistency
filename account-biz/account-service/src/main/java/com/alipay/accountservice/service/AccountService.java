@@ -1,13 +1,16 @@
 package com.alipay.accountservice.service;
 
-import com.alipay.accountservice.dto.AccountDTO;
+import com.alipay.accountservice.domain.Account;
+import com.alipay.cloudcommon.dto.AccountDTO;
+import com.alipay.cloudcommon.dto.PayRecordDTO;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * @author hyy
  * @Description
  * @create 2024-02-14 09:16
  */
-public interface AccountService {
+public interface AccountService extends IService<Account> {
 
     /**
      * 新增账户
@@ -42,4 +45,12 @@ public interface AccountService {
      * @return
      */
     AccountDTO selectByCode(String accountCode);
+
+
+    /**
+     * 增加用户账户余额
+     *
+     * @param payRecordDTO {@link PayRecordDTO}
+     */
+    void increaseAmount(PayRecordDTO payRecordDTO);
 }

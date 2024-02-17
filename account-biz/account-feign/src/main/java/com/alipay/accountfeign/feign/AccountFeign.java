@@ -1,6 +1,6 @@
 package com.alipay.accountfeign.feign;
 
-import com.alipay.accountservice.dto.AccountDTO;
+import com.alipay.cloudcommon.dto.AccountDTO;
 import com.alipay.cloudcommon.res.ResultResponse;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,4 +16,6 @@ public interface AccountFeign {
 
     @GetMapping("/getByCode/{accountCode}")
     ResultResponse<AccountDTO> selectByCode(@PathVariable(value = "accountCode") String accountCode);
+
+
 }

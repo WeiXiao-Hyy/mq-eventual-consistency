@@ -1,7 +1,7 @@
 package com.alipay.accountservice.assemble;
 
 import com.alipay.accountservice.domain.Account;
-import com.alipay.accountservice.dto.AccountDTO;
+import com.alipay.cloudcommon.dto.AccountDTO;
 
 /**
  * @author hyy

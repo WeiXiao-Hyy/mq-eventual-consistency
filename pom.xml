@@ -19,11 +19,14 @@
         <mysql.version>5.1.47</mysql.version>
         <lombok.version>1.18.30</lombok.version>
         <fastjson.version>2.0.45</fastjson.version>
+        <hutool.version>5.8.0</hutool.version>
+
         <cloud-common.version>0.0.1-SNAPSHOT</cloud-common.version>
         <account-service.version>0.0.1-SNAPSHOT</account-service.version>
         <account-feign.version>0.0.1-SNAPSHOT</account-feign.version>
         <account-api.version>0.0.1-SNAPSHOT</account-api.version>
         <order-service.version>0.0.1-SNAPSHOT</order-service.version>
+
         <encoding>UTF-8</encoding>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -85,6 +88,12 @@
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>
                 <version>${fastjson.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>cn.hutool</groupId>
+                <artifactId>hutool-all</artifactId>
+                <version>${hutool.version}</version>
             </dependency>
 
             <dependency>

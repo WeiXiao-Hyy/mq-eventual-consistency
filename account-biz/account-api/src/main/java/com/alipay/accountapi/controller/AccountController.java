@@ -1,8 +1,8 @@
 package com.alipay.accountapi.controller;
 
-import com.alipay.accountservice.dto.AccountDTO;
 import com.alipay.accountservice.service.AccountService;
 import com.alipay.cloudcommon.anno.ResponseResult;
+import com.alipay.cloudcommon.dto.AccountDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;

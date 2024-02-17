@@ -3,8 +3,8 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 -- Table structure for order
 -- ----------------------------
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order`
+DROP TABLE IF EXISTS `pay_record`;
+CREATE TABLE `pay_record`
 (
     `ID`           int(11) NOT NULL AUTO_INCREMENT,
     `ORDER_NO`     varchar(255)   DEFAULT NULL,

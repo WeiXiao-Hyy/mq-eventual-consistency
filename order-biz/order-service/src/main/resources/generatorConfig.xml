@@ -43,7 +43,7 @@
 
 
         <!--生成对应表及类名-->
-        <table tableName="order" domainObjectName="Order">
+        <table tableName="pay_record" domainObjectName="PayRecord">
             <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
         </table>
 

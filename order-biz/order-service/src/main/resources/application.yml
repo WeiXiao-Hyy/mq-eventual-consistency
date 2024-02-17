@@ -19,5 +19,8 @@ mybatis-plus:
     db-config:
       id-type: auto
 
+rocketmq:
+  namesrv: 172.16.7.1:9876
+
 logging:
   config: classpath:log4j2.xml
