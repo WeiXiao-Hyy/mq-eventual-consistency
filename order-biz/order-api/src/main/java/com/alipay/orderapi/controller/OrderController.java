@@ -1,6 +1,5 @@
 package com.alipay.orderapi.controller;
 
-import com.alipay.accountfeign.feign.AccountFeign;
 import com.alipay.cloudcommon.anno.ResponseResult;
 import com.alipay.cloudcommon.dto.PayRecordDTO;
 import com.alipay.orderservice.service.PayRecordService;

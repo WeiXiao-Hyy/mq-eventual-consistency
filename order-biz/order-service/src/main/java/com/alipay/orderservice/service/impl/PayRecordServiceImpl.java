@@ -39,6 +39,9 @@ public class PayRecordServiceImpl implements PayRecordService {
     @Autowired
     private TransactionProducer transactionProducer;
 
+    /**
+     * 雪花算法
+     */
     private Snowflake snowflake = new Snowflake(1, 1);
 
     @Transactional

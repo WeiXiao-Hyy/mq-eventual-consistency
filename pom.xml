@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.alipay</groupId>
-    <artifactId>cloud-alibaba</artifactId>
+    <artifactId>mq-eventual-consistency</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>cloud-alibaba</name>
     <description>cloud-alibaba</description>
@@ -34,7 +34,6 @@
 
     <modules>
         <module>account-biz</module>
-        <module>product-biz</module>
         <module>order-biz</module>
         <module>cloud-common</module>
     </modules>
