@@ -6,21 +6,21 @@
 
 ## 环境部署
 
-### 创建项目所需文件夹
+> 创建项目所需文件夹
 
 ```shell
 ./init.sh
 ```
 
-### 创建nacos_config数据库
+> 创建nacos_config数据库
 
 连接mysql数据库，导入nacos-mysql.sql
 
-### 编辑.env文件
+> 编辑.env文件
 
 修改.env文件中的HOME变量为项目路径
 
-### 编辑docker/conf/broker.conf
+> 编辑docker/conf/broker.conf
 
 修改namesrvAddr和brokerIP1为本地IP
 
@@ -31,13 +31,13 @@ namesrvAddr = 172.16.7.1:9876
 brokerIP1 = 172.16.7.1
 ```
 
-### 使用docker-compose运行
+> 使用docker-compose运行
 
 ```shell
 cd docker && docker-compose up -d
 ```
 
-### 测试
+> 接口测试
 
 PS:虽然不符合逻辑,但是也能学习使用了
 
