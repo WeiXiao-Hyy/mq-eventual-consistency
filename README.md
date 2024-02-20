@@ -39,6 +39,10 @@ cd docker && docker-compose up -d
 
 ### 测试
 
+PS:虽然不符合逻辑,但是也能学习使用了
+
+需求: 创建订单(order-api),增加用户余额(account-api)
+
 ```shell
 mvn install 编译项目
 
@@ -51,5 +55,4 @@ body:
     "count": 1,
     "amount": 1000.00
 }
-查看结果
 ```
