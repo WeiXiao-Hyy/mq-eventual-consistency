@@ -23,6 +23,7 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountMapper accountMapper;
 
+    // TODO: 消费端需要接口幂等
     @Override
     public void increaseAmount(PayRecordDTO payRecordDTO) {
         if (Objects.isNull(payRecordDTO)) {

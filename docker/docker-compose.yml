@@ -32,9 +32,56 @@ services:
       - mysql
     restart: always
 
-  sentinel:
-    image: bladex/sentinel-dashboard:latest
-    container_name: sentinel
+  rocketmq_namesrv:
+    image: rocketmqinc/rocketmq:4.4.0
+    container_name: rmqnamesrv
+    networks:
+      - mq-network
+    environment:
+      - MAX_POSSIBLE_HEAP=100000000
+    volumes:
+      - "/Users/hujiale/rocketmq/data/namesrv/logs:/root/logs"
+      - "/Users/hujiale/rocketmq/data/namesrv/store:/root/store"
     ports:
-      - "8858:8858"
+      - "9876:9876"
+    entrypoint: ["sh", "mqnamesrv"]
     restart: always
+
+  rocketmq_broker:
+    image: rocketmqinc/rocketmq:4.4.0
+    container_name: rmqbroker
+    networks:
+      - mq-network
+    environment:
+      - NAMESRV_ADDR=rmqnamesrv:9876
+      - MAX_POSSIBLE_HEAP=200000000
+    volumes:
+      - "/Users/hujiale/rocketmq/data/namesrv/logs:/root/logs"
+      - "/Users/hujiale/rocketmq/data/namesrv/store:/root/store"
+      - "/Users/hujiale/rocketmq/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf"
+    ports:
+      - "10911:10911"
+      - "10909:10909"
+    entrypoint: ["sh", "mqbroker", "-c", "/opt/rocketmq-4.4.0/conf/broker.conf"]
+    depends_on:
+      - rocketmq_namesrv
+    restart: always
+
+  rocketmq-console:
+    image: styletang/rocketmq-console-ng
+    container_name: rmqadmin
+    networks:
+      - mq-network
+    environment:
+      - JAVA_OPTS=-Drocketmq.namesrv.addr=rmqnamesrv:9876 -Dcom.rocketmq.sendMessageWithVIPChannel=false
+    ports:
+      - "8080:8080"
+    depends_on:
+      - rocketmq_namesrv
+      - rocketmq_broker
+    restart: always
+
+# 创建网络
+networks:
+  mq-network:
+    driver: bridge
