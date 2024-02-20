@@ -31,19 +31,22 @@ public class OrderTransactionListener implements TransactionListener {
 
     @Override
     public LocalTransactionState executeLocalTransaction(Message msg, Object arg) {
-        log.info("开始执行本地事务...");
+        log.info("Start executing local transaction...");
         LocalTransactionState state;
 
         try {
             String body = new String(msg.getBody());
             PayRecordDTO payRecordDTO = JSONObject.parseObject(body, PayRecordDTO.class);
-            log.debug("获取消息队列中message: {}", payRecordDTO);
+            log.debug("Get the message in the message queue: {}", payRecordDTO);
             payRecordService.createPayRecord(payRecordDTO, msg.getTransactionId());
+
             state = LocalTransactionState.COMMIT_MESSAGE;
-            log.info("本地事务已提交: {}", msg.getTransactionId());
+            log.info("Local transaction submitted: {}", msg.getTransactionId());
+
         } catch (Exception e) {
-            log.info("执行本地事务失败: {}", e.getMessage());
+
             state = LocalTransactionState.ROLLBACK_MESSAGE;
+            log.info("Failed to execute local transaction: {}", e.getMessage());
         }
 
         return state;
@@ -53,7 +56,7 @@ public class OrderTransactionListener implements TransactionListener {
     public LocalTransactionState checkLocalTransaction(MessageExt messageExt) {
 
         String transactionId = messageExt.getTransactionId();
-        log.info("开始回查本地事务状态: transactionId = {}", transactionId);
+        log.info("Start checking local transaction status: transactionId = {}", transactionId);
 
         LocalTransactionState state;
         TransactionLog transactionLog = transactionLogService.getById(transactionId);
@@ -64,7 +67,7 @@ public class OrderTransactionListener implements TransactionListener {
             state = LocalTransactionState.UNKNOW;
         }
 
-        log.info("结束本地事务状态查询: {}", state);
+        log.info("End local transaction status query: {}", state);
         return state;
     }
 }

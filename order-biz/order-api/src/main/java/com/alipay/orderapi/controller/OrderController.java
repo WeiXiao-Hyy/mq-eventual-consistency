@@ -27,7 +27,7 @@ public class OrderController {
     @PostMapping("/create")
     @ResponseResult
     public void create(@RequestBody PayRecordDTO payRecordDTO) throws MQClientException {
-        log.info("接受到订单数据: {}", payRecordDTO);
+        log.info("order data received: {}", payRecordDTO);
         payRecordService.createPayRecord(payRecordDTO);
     }
 }

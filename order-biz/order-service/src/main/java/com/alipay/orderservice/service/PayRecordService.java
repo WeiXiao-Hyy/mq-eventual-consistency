@@ -1,12 +1,13 @@
 package com.alipay.orderservice.service;
 
 import com.alipay.cloudcommon.dto.PayRecordDTO;
+import com.alipay.orderservice.domain.PayRecord;
 import org.apache.rocketmq.client.exception.MQClientException;
 
 /**
- * File Description.
+ * PayRecordService.
  *
- * @author arron
+ * @author hyy
  * @date crated at 2024/2/15 16:08
  * @see com.alipay.orderservice.service
  */

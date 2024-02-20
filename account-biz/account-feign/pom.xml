@@ -13,6 +13,8 @@
     <name>account-feign</name>
     <description>account-feign</description>
 
+    <packaging>jar</packaging>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>

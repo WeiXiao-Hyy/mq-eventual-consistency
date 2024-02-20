@@ -10,6 +10,7 @@ import org.apache.rocketmq.client.producer.TransactionMQProducer;
 import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.apache.rocketmq.common.message.Message;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -22,6 +23,9 @@ public class TransactionProducer {
 
     private String producerGroup = "order_trans_group";
 
+    @Value("${rocketmq.namesrv-addr}")
+    private String mqNamesrvAddr;
+
     private TransactionMQProducer producer;
 
     // 用于执行本地事务和事务状态回查的监听器
@@ -29,12 +33,18 @@ public class TransactionProducer {
     OrderTransactionListener orderTransactionListener;
 
     // 执行任务的线程池
-    ThreadPoolExecutor executor = new ThreadPoolExecutor(5, 10, 60, TimeUnit.SECONDS, new ArrayBlockingQueue<>(50));
+    ThreadPoolExecutor executor = new ThreadPoolExecutor(
+            5,
+            10,
+            60,
+            TimeUnit.SECONDS,
+            new ArrayBlockingQueue<>(50)
+    );
 
     @PostConstruct
     public void init() {
         producer = new TransactionMQProducer(producerGroup);
-        producer.setNamesrvAddr("172.16.7.1:9876");
+        producer.setNamesrvAddr(mqNamesrvAddr);
         producer.setSendMsgTimeout(Integer.MAX_VALUE);
         producer.setExecutorService(executor);
         producer.setTransactionListener(orderTransactionListener);

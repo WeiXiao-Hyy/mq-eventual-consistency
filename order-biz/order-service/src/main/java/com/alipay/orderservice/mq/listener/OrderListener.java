@@ -26,7 +26,7 @@ public class OrderListener implements MessageListenerConcurrently {
 
     @Override
     public ConsumeConcurrentlyStatus consumeMessage(List<MessageExt> msgs, ConsumeConcurrentlyContext context) {
-        log.info("消费者线程监听到消息");
+        log.info("Consume-thread start to consume message.");
         for (MessageExt message : msgs) {
             if (!process(message)) {
                 return ConsumeConcurrentlyStatus.RECONSUME_LATER;
@@ -35,19 +35,21 @@ public class OrderListener implements MessageListenerConcurrently {
         return ConsumeConcurrentlyStatus.CONSUME_SUCCESS;
     }
 
-
     private boolean process(MessageExt message) {
         try {
             PayRecordDTO payRecordDTO = JSONObject.parseObject(message.getBody(), PayRecordDTO.class);
-            log.info("开始处理订单数据,准备增加余额,MQ消费者获得消息为:{}", payRecordDTO);
+
+            log.info("Start processing order data and prepare to increase the balance. The MQ consumer gets the message:{}", payRecordDTO);
+//            int k = 1 / 0;
             accountFeign.increaseAmount(payRecordDTO);
-            return true;
         } catch (Exception e) {
             if (message.getReconsumeTimes() >= 3) {
-                log.error("消息重试已达到最大次数，将通知业务人员排查问题:{}", message.getMsgId());
+                log.error("The maximum number of message retries has been reached. " +
+                        "Business personnel will be notified to troubleshoot the problem: {}", message.getMsgId());
                 return true;
             }
             return false;
         }
+        return true;
     }
 }

@@ -5,6 +5,7 @@ import javax.annotation.PostConstruct;
 import org.apache.rocketmq.client.consumer.DefaultMQPushConsumer;
 import org.apache.rocketmq.client.exception.MQClientException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,10 +22,13 @@ public class Consumer {
     @Autowired
     private OrderListener orderListener;
 
+    @Value("${rocketmq.namesrvaddr}")
+    private String mqNamesrvAddr;
+
     @PostConstruct
     public void init() throws MQClientException {
         consumer = new DefaultMQPushConsumer(consumerGroup);
-        consumer.setNamesrvAddr("172.16.7.1:9876");
+        consumer.setNamesrvAddr(mqNamesrvAddr);
         consumer.subscribe("order", "*");
         consumer.registerMessageListener(orderListener);
         consumer.start();

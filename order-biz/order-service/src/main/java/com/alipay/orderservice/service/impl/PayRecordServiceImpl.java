@@ -16,6 +16,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.exception.MQClientException;
+import org.apache.rocketmq.client.producer.SendStatus;
+import org.apache.rocketmq.client.producer.TransactionSendResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -68,7 +70,7 @@ public class PayRecordServiceImpl implements PayRecordService {
 
         transactionLogMapper.insert(transactionLog);
 
-        log.info("订单创建完成: {}", payRecordDTO);
+        log.info("Create order success, payRecord: {}", payRecordDTO);
     }
 
     @Override

@@ -23,18 +23,17 @@ public class AccountServiceImpl implements AccountService {
     @Autowired
     private AccountMapper accountMapper;
 
-    // 需要实现消费幂等
     @Override
     public void increaseAmount(PayRecordDTO payRecordDTO) {
         if (Objects.isNull(payRecordDTO)) {
-            throw new BizException("increase Amount payRecordDTO is null");
+            throw new BizException("Increase Amount payRecordDTO is null");
         }
 
         String accountCode = payRecordDTO.getAccountCode();
         Account account = accountMapper.selectByAccountCode(accountCode);
 
         if (Objects.isNull(account)) {
-            throw new BizException("account not exist, accountCode: {}", accountCode);
+            throw new BizException("Account not exist, accountCode: {}", accountCode);
         }
 
         // 增加余额
@@ -44,6 +43,6 @@ public class AccountServiceImpl implements AccountService {
         // 更新操作
         accountMapper.updateByPrimaryKeySelective(account);
 
-        log.info("increase accountCode: {}, amount: {} success!", accountCode, amount);
+        log.info("Increase accountCode: {}, amount: {} success!", accountCode, amount);
     }
 }
