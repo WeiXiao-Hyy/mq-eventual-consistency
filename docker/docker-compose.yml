@@ -6,7 +6,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=123456
     volumes:
-      - "/Users/hujiale/GitCode/springcloud/mysql/data:/var/lib/mysql"
+      - "${HOME}/mysql/data:/var/lib/mysql"
     ports:
       - "3307:3306"
     restart: always
@@ -25,7 +25,7 @@ services:
       - MYSQL_MASTER_SERVICE_USER=root
       - MYSQL_MASTER_SERVICE_PASSWORD=123456
     volumes:
-      - "/Users/hujiale/GitCode/springcloud/nacos/logs:/home/nacos/logs"
+      - "${HOME}/nacos/logs:/home/nacos/logs"
     ports:
       - "8848:8848"
     depends_on:
@@ -40,8 +40,8 @@ services:
     environment:
       - MAX_POSSIBLE_HEAP=100000000
     volumes:
-      - "/Users/hujiale/rocketmq/data/namesrv/logs:/root/logs"
-      - "/Users/hujiale/rocketmq/data/namesrv/store:/root/store"
+      - "${HOME}/data/namesrv/logs:/root/logs"
+      - "${HOME}/data/namesrv/store:/root/store"
     ports:
       - "9876:9876"
     entrypoint: ["sh", "mqnamesrv"]
@@ -56,9 +56,9 @@ services:
       - NAMESRV_ADDR=rmqnamesrv:9876
       - MAX_POSSIBLE_HEAP=200000000
     volumes:
-      - "/Users/hujiale/rocketmq/data/namesrv/logs:/root/logs"
-      - "/Users/hujiale/rocketmq/data/namesrv/store:/root/store"
-      - "/Users/hujiale/rocketmq/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf"
+      - "${HOME}/rocketmq/data/broker/logs:/root/logs"
+      - "${HOME}/rocketmq/data/broker/store:/root/store"
+      - "${HOME}/rocketmq/conf/broker.conf:/opt/rocketmq-4.4.0/conf/broker.conf"
     ports:
       - "10911:10911"
       - "10909:10909"
