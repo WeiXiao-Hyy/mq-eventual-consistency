@@ -37,7 +37,6 @@ brokerIP1 = 172.16.7.1
 cd docker && docker-compose up -d
 ```
 
-
 ### 测试
 
 ```shell
