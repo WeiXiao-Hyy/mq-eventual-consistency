@@ -17,6 +17,7 @@
         <springcloud-alibaba.version>0.9.0.RELEASE</springcloud-alibaba.version>
         <mybatis-plus.version>3.1.1</mybatis-plus.version>
         <mysql.version>5.1.47</mysql.version>
+        <gateway.version>2.1.2.RELEASE</gateway.version>
         <lombok.version>1.18.30</lombok.version>
         <fastjson.version>2.0.45</fastjson.version>
         <hutool.version>5.8.0</hutool.version>
@@ -36,6 +37,7 @@
         <module>account-biz</module>
         <module>order-biz</module>
         <module>cloud-common</module>
+        <module>mq-gateway</module>
     </modules>
 
     <dependencyManagement>
@@ -75,6 +77,12 @@
                 <version>Greenwich.SR2</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-starter-gateway</artifactId>
+                <version>${gateway.version}</version>
             </dependency>
 
             <dependency>
