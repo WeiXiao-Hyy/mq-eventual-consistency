@@ -8,13 +8,15 @@
 
 > 创建项目所需文件夹
 
-```shell
-./init.sh
-```
+`./init.sh`
 
 > 创建nacos_config数据库
 
-连接mysql数据库，导入nacos-mysql.sql
+连接数据库，导入nacos-mysql.sql
+
+> 创建springcloud数据库
+
+连接数据库，导入docker/mysql/sql/*.sql
 
 > 编辑.env文件
 
@@ -43,10 +45,10 @@ PS:虽然不符合逻辑,但是也能学习使用了
 
 需求: 创建订单(order-api),增加用户余额(account-api)
 
-```shell
-mvn install 编译项目
+运行account-api,order-api,mq-gateway
 
-使用postman等工具 -> localhost:8013/order/create 
+```shell
+localhost:9999/order/create
 
 body:
 {
