@@ -48,7 +48,7 @@ rmqnamesrv   rocketmqinc/rocketmq:4.4.0      "sh mqnamesrv"           rocketmq_n
 
 需求: 创建订单(order-api),增加用户余额(account-api)
 
-运行account-api,order-api,mq-gateway
+运行`account-api,order-api,mq-gateway`
 
 ```shell
 localhost:9999/order/create
