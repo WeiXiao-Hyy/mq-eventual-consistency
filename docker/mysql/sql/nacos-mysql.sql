@@ -13,11 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+CREATE DATABASE IF NOT EXISTS nacos_config DEFAULT CHARACTER SET = utf8mb4;
+
+Use nacos_config;
 
 /******************************************/
 /*   数据库全名 = nacos_config   */
 /*   表名称 = config_info   */
 /******************************************/
+
+DROP TABLE IF EXISTS `config_info`;
+
 CREATE TABLE `config_info`
 (
     `id`           bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -44,6 +50,8 @@ CREATE TABLE `config_info`
 /*   数据库全名 = nacos_config   */
 /*   表名称 = config_info_aggr   */
 /******************************************/
+DROP TABLE IF EXISTS `config_info_aggr`;
+
 CREATE TABLE `config_info_aggr`
 (
     `id`           bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -63,6 +71,8 @@ CREATE TABLE `config_info_aggr`
 /*   数据库全名 = nacos_config   */
 /*   表名称 = config_info_beta   */
 /******************************************/
+DROP TABLE IF EXISTS `config_info_beta`;
+
 CREATE TABLE `config_info_beta`
 (
     `id`           bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -85,6 +95,8 @@ CREATE TABLE `config_info_beta`
 /*   数据库全名 = nacos_config   */
 /*   表名称 = config_info_tag   */
 /******************************************/
+DROP TABLE IF EXISTS `config_info_tag`;
+
 CREATE TABLE `config_info_tag`
 (
     `id`           bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -107,6 +119,8 @@ CREATE TABLE `config_info_tag`
 /*   数据库全名 = nacos_config   */
 /*   表名称 = config_tags_relation   */
 /******************************************/
+DROP TABLE IF EXISTS `config_tags_relation`;
+
 CREATE TABLE `config_tags_relation`
 (
     `id`        bigint(20) NOT NULL COMMENT 'id',
@@ -125,6 +139,8 @@ CREATE TABLE `config_tags_relation`
 /*   数据库全名 = nacos_config   */
 /*   表名称 = group_capacity   */
 /******************************************/
+DROP TABLE IF EXISTS `group_capacity`;
+
 CREATE TABLE `group_capacity`
 (
     `id`                bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
@@ -145,6 +161,8 @@ CREATE TABLE `group_capacity`
 /*   数据库全名 = nacos_config   */
 /*   表名称 = his_config_info   */
 /******************************************/
+DROP TABLE IF EXISTS `his_config_info`;
+
 CREATE TABLE `his_config_info`
 (
     `id`           bigint(64) unsigned NOT NULL,
@@ -171,6 +189,8 @@ CREATE TABLE `his_config_info`
 /*   数据库全名 = nacos_config   */
 /*   表名称 = tenant_capacity   */
 /******************************************/
+DROP TABLE IF EXISTS `tenant_capacity`;
+
 CREATE TABLE `tenant_capacity`
 (
     `id`                bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键ID',
@@ -187,7 +207,7 @@ CREATE TABLE `tenant_capacity`
     UNIQUE KEY `uk_tenant_id` (`tenant_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='租户容量信息表';
 
-
+DROP TABLE IF EXISTS `tenant_info`;
 CREATE TABLE `tenant_info`
 (
     `id`            bigint(20) NOT NULL AUTO_INCREMENT COMMENT 'id',
@@ -203,6 +223,7 @@ CREATE TABLE `tenant_info`
     KEY             `idx_tenant_id` (`tenant_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='tenant_info';
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users`
 (
     `username` varchar(50)  NOT NULL PRIMARY KEY,
@@ -210,6 +231,7 @@ CREATE TABLE `users`
     `enabled`  boolean      NOT NULL
 );
 
+DROP TABLE IF EXISTS `roles`;
 CREATE TABLE `roles`
 (
     `username` varchar(50) NOT NULL,
@@ -217,6 +239,7 @@ CREATE TABLE `roles`
     UNIQUE INDEX `idx_user_role` (`username` ASC, `role` ASC) USING BTREE
 );
 
+DROP TABLE IF EXISTS `permissions`;
 CREATE TABLE `permissions`
 (
     `role`     varchar(50)  NOT NULL,

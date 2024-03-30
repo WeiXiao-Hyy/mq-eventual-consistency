@@ -14,9 +14,12 @@
  Date: 16/02/2024 22:17:47
 */
 
-SET NAMES utf8mb4;
-SET
-FOREIGN_KEY_CHECKS = 0;
+# 创建数据库
+CREATE DATABASE IF NOT EXISTS springcloud DEFAULT CHARACTER SET = utf8mb4;
+
+Use springcloud;
+
+SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for transaction_log
@@ -30,5 +33,4 @@ CREATE TABLE `transaction_log`
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-SET
-FOREIGN_KEY_CHECKS = 1;
+SET FOREIGN_KEY_CHECKS = 1;

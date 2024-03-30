@@ -4,11 +4,15 @@ services:
     container_name: mysql
     image: mysql:5.7
     environment:
-      - MYSQL_ROOT_PASSWORD=123456
-    volumes:
-      - "${HOME}/mysql/data:/var/lib/mysql"
+      TZ: Asia/Shanghai
+      MYSQL_ROOT_PASSWORD: 123456
     ports:
       - "3307:3306"
+    volumes:
+      - "${HOME}/mysql/data:/var/lib/mysql"
+      # 初始化nacos和mysql数据
+      - "${HOME}/mysql/sql:/docker-entrypoint-initdb.d"
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
     restart: always
 
   nacos:
@@ -40,8 +44,8 @@ services:
     environment:
       - MAX_POSSIBLE_HEAP=100000000
     volumes:
-      - "${HOME}/data/namesrv/logs:/root/logs"
-      - "${HOME}/data/namesrv/store:/root/store"
+      - "${HOME}/rocketmq/data/namesrv/logs:/root/logs"
+      - "${HOME}/rocketmq/data/namesrv/store:/root/store"
     ports:
       - "9876:9876"
     entrypoint: ["sh", "mqnamesrv"]
@@ -85,3 +89,5 @@ services:
 networks:
   mq-network:
     driver: bridge
+
+

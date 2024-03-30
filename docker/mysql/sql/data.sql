@@ -1,3 +1,8 @@
+# 创建数据库
+CREATE DATABASE IF NOT EXISTS springcloud DEFAULT CHARACTER SET = utf8mb4;
+
+Use springcloud;
+
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
